@@ -10,8 +10,8 @@ services:
       - UPLOAD_DIR=/app/uploads
       - DB_PATH=/app/database/db.sqlite
     volumes:
-      - uploads:/app/uploads
-      - db:/app/database
+      - ./backend/uploads:/app/uploads
+      - ./backend/database:/app/database
     ports:
       - "4000:4000"
     healthcheck:

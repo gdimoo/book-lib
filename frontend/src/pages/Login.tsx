@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { api } from '../api';
+import { api, setAuthToken } from '../api';
 import { useAuth } from '../state/auth';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,6 +15,7 @@ export default function Login() {
     const res = await api.post('/auth/login', { username, password });
     if (res.data?.token) {
       setToken(res.data.token);
+      setAuthToken(res.data.token);
       nav('/');
     } else {
       setErr('Invalid credentials');
@@ -26,9 +27,9 @@ export default function Login() {
       <h2>Login</h2>
       <form onSubmit={onSubmit}>
         <label>Username</label>
-        <input value={username} onChange={e=>setU(e.target.value)} style={{width:'100%'}}/>
+        <input value={username} onChange={e => setU(e.target.value)} style={{ width: '100%' }} />
         <label>Password</label>
-        <input type="password" value={password} onChange={e=>setP(e.target.value)} style={{width:'100%'}}/>
+        <input type="password" value={password} onChange={e => setP(e.target.value)} style={{ width: '100%' }} />
         <button type="submit" style={{ marginTop: 12 }}>Sign in</button>
       </form>
       {err && <p style={{ color: 'crimson' }}>{err}</p>}

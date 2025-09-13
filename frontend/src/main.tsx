@@ -6,11 +6,9 @@ import Books from './pages/Books';
 import BookDetail from './pages/BookDetail';
 import BookForm from './pages/BookForm';
 import { AuthProvider, useAuth } from './state/auth';
-import { attachToken } from './api';
 
 function Private({ children }: { children: React.ReactNode }) {
   const { token } = useAuth();
-  React.useEffect(() => { attachToken(token); }, [token]);
   return token ? <>{children}</> : <Navigate to="/login" replace />;
 }
 

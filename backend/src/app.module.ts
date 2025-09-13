@@ -5,6 +5,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { Book } from './books/book.entity';
 import { BooksModule } from './books/books.module';
 import { AuthModule } from './auth/auth.module';
+import { HealthController } from './health.controller';
 
 @Module({
   imports: [
@@ -21,5 +22,6 @@ import { AuthModule } from './auth/auth.module';
     BooksModule,
     AuthModule,
   ],
+  controllers: [HealthController],
 })
 export class AppModule {}

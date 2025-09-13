@@ -7,8 +7,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(json({ limit: '10mb' }));
   app.enableCors();
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
-  await app.listen(process.env.PORT || 4000);
+  app.useGlobalPipes(new ValidationPipe({
+    whitelist: true,
+    transform: true,
+    transformOptions: { enableImplicitConversion: true },
+  }));
+  await app.listen(process.env.PORT || 4000, '0.0.0.0');
   console.log(`API on http://localhost:${process.env.PORT || 4000}`);
 }
 bootstrap();

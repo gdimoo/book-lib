@@ -43,3 +43,7 @@ docker compose up -d
 - `DELETE /books/:id`
 - `POST /books/:id/borrow`
 - `POST /books/:id/return`
+
+## Note
+- I tried using Docker Compose to simplify development and run the project on other machines, but it was still unsuccessful.
+- I also tried creating a development setup with Docker Compose to enable hot reload during development, but that was also unsuccessful.

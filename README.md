@@ -2,23 +2,13 @@
 
 NestJS + SQLite + React/TS + file upload (local) + simple token auth.
 
-## Quick Start (Docker)
-
-```bash
-docker compose build
-docker compose up -d
-# Frontend: http://localhost:5173  (login: admin/admin)
-# Backend:  http://localhost:4000
-```
-
-* Seed runs automatically on backend start (idempotent).
-
 ## Local Dev (no Docker)
 
 Backend:
 ```bash
 cd backend
 cp .env.example .env
+mkdir -p uploads database
 npm i
 npm run seed
 npm run start:dev
@@ -30,6 +20,19 @@ cd frontend
 npm i
 npm run dev
 ```
+
+
+# (Docker) It's still has problem when call file to display, so can't run full-loop
+
+```bash
+docker compose build
+docker compose up -d
+# Frontend: http://localhost:5173  (login: admin/admin)
+# Backend:  http://localhost:4000
+```
+
+* Seed runs automatically on backend start (idempotent).
+
 
 ## API Notes
 - `POST /auth/login` => `{ token }`  (admin/admin)

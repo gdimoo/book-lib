@@ -18,10 +18,15 @@ import { HealthController } from './health.controller';
     ServeStaticModule.forRoot({
       rootPath: join(process.cwd(), process.env.UPLOAD_DIR || 'uploads'),
       serveRoot: '/uploads',
+      serveStaticOptions: {
+        index: false,
+        redirect: false,
+        fallthrough: true,
+      },
     }),
     BooksModule,
     AuthModule,
   ],
   controllers: [HealthController],
 })
-export class AppModule {}
+export class AppModule { }

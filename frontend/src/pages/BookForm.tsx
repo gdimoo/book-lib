@@ -29,8 +29,20 @@ export default function BookForm() {
     fd.append('quantity', String(form.quantity));
     if (form.cover) fd.append('cover', form.cover);
 
-    if (isEdit) await api.patch(`/books/${id}`, fd);
-    else await api.post('/books', fd);
+    try {
+      if (isEdit) await api.patch(`/books/${id}`, fd);
+      else await api.post('/books', fd);
+      nav('/');
+    } catch (err: any) {
+      const status = err?.response?.status;
+      const msg = err?.response?.data?.message || err?.message || 'อัปโหลดไม่สำเร็จ';
+      if (status === 413) {
+        alert('ไฟล์ใหญ่เกิน 5MB');
+      } else {
+        // ถ้า message เป็น array ของ validation errors
+        alert(Array.isArray(msg) ? msg.join('\n') : String(msg));
+      }
+    }
 
     nav('/');
   };
